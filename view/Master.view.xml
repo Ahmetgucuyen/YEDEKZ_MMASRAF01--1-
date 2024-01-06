@@ -1,0 +1,73 @@
+<mvc:View controllerName="eve.ui.Z_MMASRAF01.controller.Master" xmlns="sap.m" xmlns:semantic="sap.m.semantic" xmlns:mvc="sap.ui.core.mvc">
+<!--	<semantic:SemanticPage id="masterPage" preserveHeaderStateOnScroll="true" toggleHeaderOnTitleClick="false">-->
+		<!--<semantic:titleHeading>-->
+		<!--	<Title id="masterPageTitle" text="{masterView>/title}" level="H2"/>-->
+		<!--</semantic:titleHeading>-->
+		
+	<semantic:MasterPage
+		id="pages"
+		title="{masterView>/title}"
+		navButtonPress="onNavBack"
+		showNavButton="true">
+		<semantic:content>
+			<!-- For client side filtering add this to the items attribute: parameters: {operationMode: 'Client'}}" -->
+			<List id="list" width="auto" class="sapFDynamicPageAlignContent"
+				items="{ path: '/MasterYeniSet', sorter: { path: 'Requestid', descending: false }, groupHeaderFactory: '.createGroupHeader' }"
+				busyIndicatorDelay="{masterView>/delay}" noDataText="{masterView>/noDataText}"
+				mode="{= ${device>/system/phone} ? 'None' : 'SingleSelectMaster'}" growing="true" growingScrollToLoad="true"
+				updateFinished=".onUpdateFinished" selectionChange=".onSelectionChange">
+				<infoToolbar>
+					<Toolbar active="true" id="filterBar" visible="{masterView>/isFilterBarVisible}" press=".onOpenViewSettings">
+						<Title id="filterBarLabel" text="{masterView>/filterBarLabel}" level="H3"/>
+					</Toolbar>
+				</infoToolbar>
+				<headerToolbar>
+					<OverflowToolbar>
+						<SearchField id="searchField"   showRefreshButton="true" tooltip="{i18n>masterSearchTooltip}" placeholder="Ay giriniz." search=".onSearch"
+							width="auto">
+							<!--<Select id="idSelect" change="onClickMainListGecmis"   width="195px" valueState="None" valueStateText="empty string" selectedItemId="empty string" editable="true" enabled="true" icon="empty string"-->
+							<!--													textAlign="Initial" textDirection="Inherit" forceSelection="false" >-->
+							<!--													<items>-->
+																					
+																					<!--<core:Item key="" text=""/>-->
+																					
+							<!--														<core:Item key="1" text="Ocak"/>-->
+							<!--														<core:Item key="2" text="Şubat"/>-->
+							<!--														<core:Item key="3" text="Mart"/>-->
+							<!--														<core:Item key="4" text="Nisan"/>-->
+							<!--														<core:Item key="5" text="Mayıs"/>-->
+							<!--														<core:Item key="6" text="Haziran"/>-->
+							<!--														<core:Item key="7" text="Temmuz"/>-->
+							<!--														<core:Item key="8" text="Ağustos"/>-->
+							<!--														<core:Item key="9" text="Eylül"/>-->
+							<!--														<core:Item key="10" text="Ekim"/>-->
+							<!--														<core:Item key="11" text="Kasım"/>-->
+							<!--														<core:Item key="12" text="Aralık"/>-->
+																				
+							<!--													</items>-->
+							<!--												</Select>-->
+							<layoutData>
+								<OverflowToolbarLayoutData minWidth="150px" maxWidth="240px" shrinkable="true" priority="NeverOverflow"/>
+							</layoutData>
+						</SearchField>
+						<ToolbarSpacer/>
+						<!--<Button id="sortButton" press=".onOpenViewSettings" icon="sap-icon://sort" type="Transparent"/>-->
+						<Button id="masterButton" press=".onCreateMaster" icon="sap-icon://add" type="Transparent"/>
+						<!--<Button id="filterButton" press=".onOpenViewSettings" icon="sap-icon://filter" type="Transparent"/>-->
+						<!--<Button id="groupButton" press=".onOpenViewSettings" icon="sap-icon://group-2" type="Transparent"/>-->
+					</OverflowToolbar>
+				</headerToolbar>
+				<items>
+					<ObjectListItem type="Navigation" press=".onSelectionChange" title="{Bukrs}/{Masrafyeri}"
+						number="{ path: 'Toplam', type: 'sap.ui.model.odata.type.Decimal', constraints: {scale: '2'} }" numberUnit="TRY">
+						<firstStatus>
+							<ObjectStatus text="{ path: 'Statu', formatter: '.formatter.statu1Format' }" state="{ path: 'Statu', formatter: '.formatter.statuFormat' }"/>
+							<!--<ObjectStatus text="{Statu}"/>-->
+						</firstStatus>
+						<ObjectAttribute text="{path:'Datum', type: 'sap.ui.model.type.Date', formatOptions: { pattern: 'dd.MM.yyyy' , UTC: true }}"/>
+					</ObjectListItem>
+				</items>
+			</List>
+		</semantic:content>
+	</semantic:MasterPage>
+</mvc:View>

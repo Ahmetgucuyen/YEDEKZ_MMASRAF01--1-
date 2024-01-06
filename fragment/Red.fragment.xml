@@ -1,0 +1,11 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core">
+	<Dialog title="Red Sebebi" state="Information" icon="sap-icon://comment">
+		<TextArea value="{detailView>/Red}" rows="5" enabled="false" width="20rem" class="sapUiSmallMarginBeginEnd sapUiSmallMarginTopBottom"/>
+		<beginButton/>
+		<buttons>
+			<Button text="{i18n>CLOSE}" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false" press="onCloseDialogRed"/>
+		</buttons>
+		<customHeader/>
+		<endButton/>
+	</Dialog>
+</core:FragmentDefinition>

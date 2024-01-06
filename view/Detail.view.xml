@@ -1,0 +1,222 @@
+<mvc:View controllerName="eve.ui.Z_MMASRAF01.controller.Detail" xmlns="sap.m" xmlns:semantic="sap.m.semantic" xmlns:core="sap.ui.core"
+	xmlns:footerbar="sap.ushell.ui.footerbar" xmlns:mvc="sap.ui.core.mvc">
+	<semantic:DetailPage
+		id="pages"
+		navButtonPress="onNavBack"
+		showNavButton="{device>/system/phone}"
+		title="Masraflar"
+		busy="{detailView>/busy}"
+		busyIndicatorDelay="{detailView>/delay}">
+		<semantic:subHeader>
+			<Bar id="headerBar">
+				<contentMiddle>
+					<!--<SearchField id="searchField" showRefreshButton="{= !${device>/support/touch} }" tooltip="{i18n>masterSearchTooltip}" width="100%"-->
+					<!--	search="onSearch"></SearchField>-->
+						<Title text="{Bukrs}/{Masrafyeri}" level="H2"/>
+				</contentMiddle>
+					<contentRight>
+						<Title text="{Requestid}" level="H2"/>
+				</contentRight>
+					<contentLeft>
+					<VBox>
+				<HBox>
+					<ObjectAttribute title="{i18n>ToplamTutar}"/>
+					<ObjectNumber id="objectHeaderNumber" number="{ path: 'Toplam', type: 'sap.ui.model.odata.type.Decimal', constraints: {scale: '2'} }"
+						unit="TRY" class="sapUiTinyMarginBegin"/>
+					<ObjectAttribute id="idStatuAttr" title="{Statu}" visible="false"/>
+				</HBox>
+			</VBox>
+				</contentLeft>
+			</Bar>
+		</semantic:subHeader>
+		<!--		<semantic:titleHeading>-->
+		<!--	<Title text="{Gjahr} {Monat}" level="H2"/>-->
+		<!--</semantic:titleHeading>-->
+		<!--<semantic:headerContent>-->
+		<!--	<VBox>-->
+		<!--		<HBox>-->
+		<!--			<ObjectAttribute title="{i18n>ToplamTutar}"/>-->
+		<!--			<ObjectNumber id="objectHeaderNumber" number="{ path: 'Wrbtr', type: 'sap.ui.model.odata.type.Decimal', constraints: {scale: '2'} }"-->
+		<!--				unit="{Waers}" class="sapUiTinyMarginBegin"/>-->
+		<!--			<ObjectAttribute id="idStatuAttr" title="{Statu}" visible="false"/>-->
+		<!--		</HBox>-->
+		<!--	</VBox>-->
+		<!--</semantic:headerContent>-->
+		<semantic:content>
+			<IconTabBar id="idIconTabBarMulti" expanded="{device>/isNoPhone}">
+				<items>
+					<IconTabFilter icon="sap-icon://product" key="Masraflar" text="Masraflar">
+						<Table id="lineItemsList" width="auto" items="{docDetailModel>/tableData}" updateFinished=".onListUpdateFinished" delete="onDeleteItem"
+							mode="{ path: 'Statu', formatter: '.formatter.modeTable' }" selectionChange="onSelectionChange"
+							noDataText="{i18n>detailLineItemTableNoDataText}" busyIndicatorDelay="{detailView>/lineItemTableDelay}">
+							<headerToolbar>
+								<Toolbar>
+									<ToolbarSpacer/>
+									<Button text="{i18n>SatirEkle}" id="idekle" press="onPressAddSatir"/>
+									<Button text="Onaya Gönder" id="idonay" icon="sap-icon://paper-plane" press="onPressOnayla"/>
+								</Toolbar>
+							</headerToolbar>
+							<columns>
+								<Column >
+									<Text text="{i18n>Tarih}"/>
+								</Column>
+									<Column demandPopin="true" minScreenWidth="Tablet" popinDisplay="Inline">
+									<Text text="Masraf No"/>
+								</Column>
+								<Column demandPopin="true" minScreenWidth="Tablet" popinDisplay="Inline">
+									<Text text="Şirket Kodu"/>
+								</Column>
+								<Column demandPopin="true" minScreenWidth="Tablet" popinDisplay="Inline">
+									<Text text="Masraf Yeri"/>
+								</Column>
+								<Column demandPopin="true" hAlign="Begin" minScreenWidth="Tablet" popinDisplay="Inline">
+									<Text text="Masraf Çeşidi"/>
+								</Column>
+								<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Begin" popinDisplay="Inline">
+									<Text text="Tutar"/>
+									<footer>
+										<Text text="{ path: 'Toplam', type: 'sap.ui.model.odata.type.Decimal', constraints: {scale: '2'} }"/>
+									</footer>
+								</Column>
+								<Column demandPopin="true" hAlign="Begin" minScreenWidth="Tablet" popinDisplay="Inline">
+									<Text text="Cari Kodu"/>
+								</Column>
+								<Column demandPopin="true" hAlign="Begin" minScreenWidth="Tablet" popinDisplay="Inline">
+									<Text text="Cari Adı"/>
+								</Column>
+								<!--<Column demandPopin="true" hAlign="Begin" minScreenWidth="Tablet" popinDisplay="Inline">-->
+								<!--	<Text text="Belge No"/>-->
+								<!--</Column>-->
+								<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center" popinDisplay="Inline">
+									<Text text="Aciklama"/>
+								</Column>
+								<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center" popinDisplay="Inline">
+									<Text text="{i18n>Doküman}"/>
+								</Column>
+								<!--<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center" popinDisplay="Inline">-->
+								<!--	<Text text="Statü"/>-->
+								<!--</Column>-->
+							</columns>
+							<items>
+								<ColumnListItem>
+									<cells>
+										<Text text="{path:'docDetailModel>Datum', type: 'sap.ui.model.type.Date', formatOptions: { pattern: 'dd.MM.yyyy' , UTC: false }}"
+											wrapping="false"/>
+											
+										<Text text="{docDetailModel>Itemno}" wrapping="false"/>
+										<Text text="{docDetailModel>Bukrs}" wrapping="false"/>
+										<Text text="{docDetailModel>Masrafyeri}" wrapping="false"/>
+										<ObjectIdentifier title="{docDetailModel>Masrafcesidi}" text="{docDetailModel>Exptext}"/>
+										<ObjectNumber number="{ path: 'docDetailModel>Tutar', type: 'sap.ui.model.odata.type.Decimal', constraints: {scale: '2'} }" unit="{Tutar}"/>
+										<!--<Text text="{path:'Cdate', type: 'sap.ui.model.type.Date', formatOptions: { pattern: 'dd.MM.yyyy' , UTC: false }}"/>-->
+										<Text text="{docDetailModel>Carikodu}" wrapping="false"/>
+										<Text text="{docDetailModel>Cariadi}" wrapping="false"/>
+										<core:Icon src="sap-icon://discussion-2" press="onShowAciklama"/>
+										<core:Icon src="sap-icon://documents" press="onPressDosya"/>
+										<!--<ObjectStatus text="{ path: 'docDetailModel>Statu', formatter: '.formatter.kalemStatu' }"-->
+										<!--	state="{ path: 'docDetailModel>Statu', formatter: '.formatter.statuFormat' }"/>-->
+									</cells>
+								</ColumnListItem>
+							</items>
+						</Table>
+					</IconTabFilter>
+					<IconTabFilter icon="sap-icon://detail-view" key="gecmis" text="Geçmiş">
+							<Table id="idGecmisLog" visible="true" inset="false" items="{ path: '/GecmisLogSet', templateShareable:false , sorter: { path: 'Requestid', descending: false }}">
+						<columns>
+							<Column >
+								<Text text="Gerçekleştiren"/>
+							</Column>
+								<Column >
+								<Text text="Masraf No"/>
+							</Column>
+						
+							
+							<Column minScreenWidth="Tablet" demandPopin="true">
+								<Text text="Eski Durum"/>
+							</Column>
+							<Column minScreenWidth="Tablet" demandPopin="true">
+								<Text text="Yeni Durum"/>
+							</Column>
+							<Column minScreenWidth="Tablet" demandPopin="true">
+								<Text text="İşlem Tarihi"/>
+							</Column>
+							<Column minScreenWidth="Tablet" demandPopin="true">
+								<Text text="İşlem Saati"/>
+							</Column>
+							<Column minScreenWidth="Tablet" demandPopin="true">
+								<Text text="Red Sebebi"/>
+							</Column>
+						
+						</columns>
+						<items>
+							<ColumnListItem vAlign="Middle">
+								<cells>
+									<Text text="{Uname}"/>
+									
+									<Text text="{Itemno}"/>
+										<ObjectStatus text="{ path: 'Eskistatu', formatter: '.formatter.statu1Format' }" state="{ path: 'Eskistatu', formatter: '.formatter.statuFormat' }"/>
+					
+									<!--<Text state="{ path: 'Yenistatu', formatter: '.formatter.statuFormat' }" text="{ path: 'Yenistatu', formatter: '.formatter.statu1Format' }"/>-->
+									<ObjectStatus text="{ path: 'Yenistatu', formatter: '.formatter.statu1Format' }" state="{ path: 'Yenistatu', formatter: '.formatter.statuFormat' }"/>
+					
+									<Text text="{path:'Datum', type: 'sap.ui.model.type.Date', formatOptions: { pattern: 'dd.MM.yyyy' , UTC: true }}"/>
+										<Text 		text="{path:'Saat/ms', type:'sap.ui.model.type.Time', formatOptions: {UTC: true , source : { pattern : 'timestamp'}, pattern : 'HH:mm:ss'}, templateShareable:false}"/>
+								
+								<!--<Text text="{path: 'Saat', type: 'sap.ui.model.type.Date', formatOptions: { pattern: 'HH:mm:ss', UTC: true } ,formatter: '.formatter.onaySaatFormatter'}" />-->
+								<!--<Text text="{path:'Saat', type: 'sap.ui.model.type.Date', formatOptions: { pattern: 'dd.MM.yyyy' , UTC: true }}"/>-->
+										 <!--<Text text="{path:'Saat', type: 'sap.ui.model.type.Time', formatOptions: { pattern: 'hh:mm' , UTC: true }}"/> -->
+								
+									<!--<Text text="{Saat}"/>-->
+									
+										<core:Icon src="sap-icon://discussion-2" press="onShowRed"/>
+									<!--<Text text="{Red}"/>-->
+									
+									<!--<Text text="{ path: 'Statu', formatter: '.statuFormatter' }" />-->
+									</cells>
+							</ColumnListItem>
+						</items>
+					</Table>
+						<Table id="lineItemsListGecmis" width="auto" items="{docDetailModel>/tableData2}" updateFinished=".onListUpdateFinishedGecmis"
+							noDataText="{i18n>detailLineItemTableNoDataTextGecmis}"  visible="false"	mode="{ path: 'Statu', formatter: '.formatter.modeTable' }" busyIndicatorDelay="{detailView>/lineItemTableDelay}">
+							<columns>
+								<Column >
+									<Text text="{i18n>Uname}"/>
+								</Column>
+								<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Begin" popinDisplay="Inline">
+									<Text text="{i18n>OldStatuText}"/>
+								</Column>
+								<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Begin" popinDisplay="Inline">
+									<Text text="{i18n>StatuText}"/>
+								</Column>
+								<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Begin" popinDisplay="Inline">
+									<Text text="{i18n>Brsed}"/>
+								</Column>
+								<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Begin" popinDisplay="Inline">
+									<Text text="{i18n>Brset}"/>
+								</Column>
+								<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center" popinDisplay="Inline">
+									<Text text="{i18n>RedNedeni}"/>
+								</Column>
+							</columns>
+							<items>
+								<ColumnListItem>
+									<cells>
+										<Text text="{docDetailModel>Uname}"/>
+										<ObjectStatus text="{docDetailModel>StatuEskiText}" state="{ path: 'ocDetailModel>StatuEski', formatter: '.formatter.statuFormat' }"/>
+										<ObjectStatus text="{docDetailModel>StatuText}" state="{ path: 'docDetailModel>Statu', formatter: '.formatter.statuFormat' }"/>
+										<Text text="{path:'docDetailModel>Brsed', type: 'sap.ui.model.type.Date', formatOptions: { pattern: 'dd.MM.yyyy' , UTC: false }}"/>
+										<Text
+											text="{path:'docDetailModel>Brset/ms', type:'sap.ui.model.type.Time', formatOptions: { source : { pattern : 'timestamp'}, pattern : 'HH:mm:ss', UTC: false}}"/>
+										<core:Icon src="sap-icon://discussion-2" press="onShowRedNedeni" visible="{= ${docDetailModel>RedNedeni} === '' ? false : true }"/>
+									</cells>
+								</ColumnListItem>
+							</items>
+						</Table>
+					</IconTabFilter>
+				</items>
+			</IconTabBar>
+		</semantic:content>
+	
+	</semantic:DetailPage>
+	<!--<Button id="onayaGonder" text="{i18n>SendApprover}" icon="sap-icon://paper-plane" press="onApp"/>-->
+</mvc:View>

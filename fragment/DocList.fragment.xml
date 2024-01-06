@@ -1,0 +1,31 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core">
+	<Dialog title="{i18n>DOCUMENT}" icon="sap-icon://document">
+		<UploadCollection class="sapUiTinyMarginBegin sapUiTinyMarginTop" maximumFilenameLength="100" maximumFileSize="100"
+			busy="{detailView>/screenOptions/busyUploadCollect}" multiple="true" items="{ path: 'detailView>/DocListItems', templateShareable: false }"
+			sameFilenameAllowed="true" instantUpload="true" showSeparators="Inner" change="onChange" fileDeleted="onFileDeleted"
+			filenameLengthExceed="onFilenameLengthExceed" fileSizeExceed="onFileSizeExceed" typeMissmatch="onTypeMissmatch"
+			uploadComplete="onUploadComplete" beforeUploadStarts="onBeforeUploadStarts">
+			<items>
+				<UploadCollectionItem documentId="{detailView>Docid}" fileName="{detailView>Filename}" mimeType="{detailView>Mimetype}"
+					url="{detailView>/url}{detailView>/ExpnoStr}{detailView>Expno}{detailView>/ItemnoStr}{detailView>Itemno}{detailView>/DocidStr}{detailView>Docid}{detailView>/value}"
+					enableEdit="false" enableDelete="true" visibleEdit="false"
+					selected="false">
+					<attributes>
+						<!--<ObjectAttribute title="{i18n>CREATENAME}" text="{detailView>CrName}"/>-->
+						<ObjectAttribute title="{i18n>CREATEDATE}"
+							text="{path:'detailView>Datum', type: 'sap.ui.model.type.Date', formatOptions: {pattern: 'dd.MM.yyyy'}}"/>
+						<ObjectAttribute title="{i18n>CREATETIME}"
+							text="{path:'detailView>Uzeit/ms', type:'sap.ui.model.type.Time', formatOptions: { source : { pattern : 'timestamp'}, pattern : 'HH:mm:ss'}}"/>
+					</attributes>
+				</UploadCollectionItem>
+			</items>
+		</UploadCollection>
+		<beginButton/>
+		<buttons>
+			<Button text="{i18n>CLOSE}" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false"
+				press="onCloseDocDialogDocList"/>
+		</buttons>
+		<customHeader/>
+		<endButton/>
+	</Dialog>
+</core:FragmentDefinition>

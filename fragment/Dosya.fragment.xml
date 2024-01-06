@@ -1,0 +1,22 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core">
+	<Dialog title="{fragment>/dialogTitle}" state="None">
+        <VBox class="sapUiTinyMarginBeginEnd">
+            <!-- <Text text="Detay"/> -->
+            <List items="{DocList2>/tableDocShow2}" visible="true" id="idDocListD1"
+                headerText="Dosyalar" >
+    <ActionListItem  icon="sap-icon://action" press="onActionPressedDR"   text="{DocList2>Fname}" >
+        <customData>
+            <core:CustomData key="myCustomKey" value="{DocList2>url}" writeToDom="true" />
+          </customData>
+          </ActionListItem>
+        </List>
+    </VBox>
+       
+    
+        <endButton>
+            <Button class="sapUiSizeCompact" text="Kapat"  icon="sap-icon://sys-cancel" press="onClose2"/>
+        </endButton>
+    
+      
+	</Dialog>
+</core:FragmentDefinition>

@@ -1,0 +1,19 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core">
+	<Dialog title="Masraf Formu" icon="sap-icon://form">
+		<UploadCollection class="sapUiTinyMarginBegin sapUiTinyMarginTop" maximumFilenameLength="100" maximumFileSize="100"
+			uploadEnabled="true"  multiple="true"
+			 sameFilenameAllowed="true" instantUpload="true"
+			showSeparators="Inner" change="onChange1"  filenameLengthExceed="onFilenameLengthExceed"
+			fileSizeExceed="onFileSizeExceed" typeMissmatch="onTypeMissmatch" uploadComplete="onUploadComplete1"
+			beforeUploadStarts="onBeforeUploadStarts1">
+		
+		</UploadCollection>
+		<beginButton/>
+		<buttons>
+			<Button text="{i18n>CLOSE}" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false"
+				press="onCloseDocDialogMasrafFormu"/>
+		</buttons>
+		<customHeader/>
+		<endButton/>
+	</Dialog>
+</core:FragmentDefinition>

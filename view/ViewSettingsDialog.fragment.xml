@@ -1,0 +1,29 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<ViewSettingsDialog id="viewSettingsDialog" confirm=".onConfirmViewSettingsDialog">
+		<!--	<sortItems>
+			<ViewSettingsItem
+				text="{i18n>masterSort1}"
+				key="Excode"
+				selected="true"/>
+			<ViewSettingsItem
+				text="{i18n>masterSort2}"
+				key="Wrbtr"/>
+		</sortItems>-->
+		<filterItems>
+			<ViewSettingsFilterItem id="filterItems" text="{i18n>SearchStatu}" multiSelect="true">
+				<items>
+					<ViewSettingsItem text="Uygun" key="A"/>
+					<ViewSettingsItem text="Onay Verilen" key="B"/>
+					<ViewSettingsItem text="Reddedilen" key="C"/>
+					<ViewSettingsItem text="Muhasebe Reddetti" key="F"/>
+					<ViewSettingsItem  text="Onay Bekleyen" key="D"/>
+				</items>
+			</ViewSettingsFilterItem>
+		</filterItems>
+		<!--	<groupItems>
+			<ViewSettingsItem
+				text="{i18n>masterGroup1}"
+				key="Wrbtr"/>
+		</groupItems>-->
+	</ViewSettingsDialog>
+</core:FragmentDefinition>

@@ -1,0 +1,6 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<SelectDialog id="idSelectDialogBukrs" title="Şirket Kodu" items="{ path: '/BukrsSHSet', sorter: { path: 'Bukrs', descending: false } }"
+		search="_searchBukrsSH" liveChange="_searchBukrsSH" confirm="_confirmBukrsSH" cancel="_confirmVbelnSH">
+		<StandardListItem title="{Bukrs}" description="{Butxt}" iconDensityAware="false" iconInset="false" type="Active"/>
+	</SelectDialog>
+</core:FragmentDefinition>

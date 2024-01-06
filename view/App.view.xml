@@ -1,0 +1,9 @@
+<mvc:View
+	controllerName="eve.ui.Z_MMASRAF01.controller.App"
+	xmlns:mvc="sap.ui.core.mvc"
+	displayBlock="true"
+	busy="{appView>/busy}"
+	busyIndicatorDelay="{appView>/delay}"
+	xmlns="sap.m">
+	<SplitApp id="layout" />
+</mvc:View>

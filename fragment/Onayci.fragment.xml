@@ -1,0 +1,25 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core">
+	<Dialog title="Onaycı Seçiniz" state="Information" icon="sap-icon://accept" contentWidth="25%">
+		<Table id="idOnayciTable" items="{onayDialogModel>/Onaycilar}" mode="SingleSelectMaster" selectionChange="onOnayciSelection">
+			<columns>
+				<Column>
+					<Text text="Onaycı Adı"/>
+				</Column>
+			</columns>
+			<items>
+				<ColumnListItem>
+					<cells>
+						<Text text="{onayDialogModel>OnayName1}"/>
+					</cells>
+				</ColumnListItem>
+			</items>
+		</Table>
+		<beginButton/>
+		<buttons>
+			<Button text="Kapat" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false" press="onCloseDialogOnayci"/>
+			<Button text="Gönder" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false" press="onChooseOnayci"/>
+		</buttons>
+		<customHeader/>
+		<endButton/>
+	</Dialog>
+</core:FragmentDefinition>
